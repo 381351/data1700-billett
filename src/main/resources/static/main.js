@@ -52,9 +52,10 @@ function inputValidation() {
 
 }
 
+
+
 function emptyInputs() {
     for (let input of inputs) {
         input.val("")
     }
-
 }
