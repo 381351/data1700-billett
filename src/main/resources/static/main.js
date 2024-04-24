@@ -1,3 +1,7 @@
+$(function () {
+    showTickets()
+})
+
 let valid;
 
 let movie;
@@ -8,6 +12,29 @@ let number;
 let email;
 
 let inputs;
+
+function showTickets() {
+    $.get("/getTickets", function(data) {
+        let output = "<h2>All tickets</h2><table class='table' id='tickets'>" +
+            "<tr><th>Movie</th><th>Number of tickets</th><th>First Name</th>" +
+            "<th>Last Name</th><th>Phone</th><th>E-mail</th><th></th><th></th></tr>"
+        for (let ticket of data) {
+            output += "<tr><td>"+ ticket.movie +"</td>" +
+                "<td>"+ticket.amount+"</td>" +
+                "<td>"+ticket.first_name+"</td>" +
+                "<td>"+ticket.last_name+"</td>" +
+                "<td>"+ticket.number+"</td>" +
+                "<td>"+ticket.email+"</td>" +
+                "<td><button class='btn btn-primary' onclick='editTicket(ticket.id)'>Edit</button></td>" +
+                "<td><button class='btn btn-danger' onclick='deleteTicket(ticket.id)'>Delete</button></td>" +
+                "</tr>"
+        }
+        output += "</table><button class='btn btn-danger'>Delete all tickets</button>"
+        $("#tickets").html(output)
+    })
+}
+
+
 function buy() {
     movie = $("#movies")
     amount = $("#amount")
@@ -19,8 +46,8 @@ function buy() {
     inputs = [movie, amount, first_name, last_name, number, email]
     inputValidation()
     if (valid) {
-        $.get("/helloWorld", function (data) {
-            console.log(data)
+        $.get("/helloWorld", function (goddag) {
+            console.log(goddag)
         })
         emptyInputs()
     }
@@ -29,7 +56,6 @@ function buy() {
 
 
 
-let message = "hei"
 function inputValidation() {
     valid = true;
     for (let input of inputs) {
