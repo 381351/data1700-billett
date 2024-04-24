@@ -18,4 +18,15 @@ public class TicketRepository {
         String sql = "SELECT * FROM Ticket";
         return db.query(sql, new BeanPropertyRowMapper<>(Ticket.class));
     }
+
+    public Ticket getTicket(int id) {
+        String sql = "SELECT * FROM Ticket WHERE id = ?";
+
+        return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Ticket.class), id);
+    }
+
+    public void addTicket(Ticket ticket) {
+        String sql = "INSERT INTO Ticket (movie, amount, first_name, last_name, number, email) VALUES(?, ?, ?, ?, ?, ?)";
+        db.update(sql, ticket.getMovie(), ticket.getAmount(), ticket.getFirst_name(), ticket.getLast_name(), ticket.getNumber(), ticket.getEmail());
+    }
 }
