@@ -38,8 +38,7 @@ function showTickets() {
     })
 }
 
-
-function buy() {
+function setAttributes() {
     movie = $("#movies")
     amount = $("#amount")
     first_name = $("#first-name")
@@ -48,6 +47,10 @@ function buy() {
     email = $("#email")
 
     inputs = [movie, amount, first_name, last_name, number, email]
+}
+
+function buy() {
+    setAttributes()
     inputValidation()
     if (valid) {
         ticket = {
@@ -104,14 +107,46 @@ function emptyInputs() {
 }
 
 function editTicket(id) {
-    console.log(id)
+    setAttributes()
     $.ajax( {
         TYPE: "GET",
-        url: "/getTicket",
-        data: id,
+        url: "/getTicket?id="+ id,
         success: function(data) {
+            movie.val(data.movie)
+            amount.val(data.amount)
             first_name.val(data.first_name)
-            console.log(data.first_name)
+            last_name.val(data.last_name)
+            number.val(data.number)
+            email.val(data.email)
+
+            $("#ticket-submit").text("Edit")
+            $("#ticket-form").attr("action", "javascript:submitEdit("+data.id+")")
         }
     })
+}
+
+function submitEdit(id) {
+    setAttributes()
+    ticket = {
+        "id" : id,
+        "movie" : movie.val(),
+        "amount" : amount.val(),
+        "first_name" : first_name.val(),
+        "last_name" : last_name.val(),
+        "number" : number.val(),
+        "email" : email.val()
+    }
+    $.ajax({
+        type: "PUT",
+        url : "/editTicket",
+        data : ticket,
+        success : function () {
+            showTickets()
+            emptyInputs()
+
+            $("#ticket-submit").text("Buy")
+            $("#ticket-form").attr("action", "javascript:buy()")
+        }
+    })
+
 }

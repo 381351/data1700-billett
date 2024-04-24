@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Ticket ordering</h1>
-<form class="form-group" action="javascript:buy()">
+<form id="ticket-form" class="form-group" action="javascript:buy()">
     <label for="movies">Choose movie
         <select id="movies" class="form-control">
             <option value="" name="movie"></option>
@@ -26,7 +26,7 @@
     <label for="last-name">Last Name<input id="last-name" class="form-control" type="text" /><span id="last-name-error" class="text-danger"></span></label>
     <label for="number">Phone number<input id="number" class="form-control" type="text" min="8" max="8" /><span id="number-error" class="text-danger"></span></label>
     <label for="email">E-mail<input id="email" class="form-control" type="email" /><span id="email-error" class="text-danger"></span></label>
-    <button class="btn btn-success" type="submit">Buy</button>
+    <button id="ticket-submit" class="btn btn-success" type="submit">Buy</button>
 </form>
 <div id="tickets">
 

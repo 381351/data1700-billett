@@ -29,4 +29,9 @@ public class TicketRepository {
         String sql = "INSERT INTO Ticket (movie, amount, first_name, last_name, number, email) VALUES(?, ?, ?, ?, ?, ?)";
         db.update(sql, ticket.getMovie(), ticket.getAmount(), ticket.getFirst_name(), ticket.getLast_name(), ticket.getNumber(), ticket.getEmail());
     }
+
+    public void editTicket(Ticket ticket) {
+        String sql = "UPDATE Ticket SET movie = ?, amount = ?, first_name = ?, last_name = ?, number = ?, email = ? WHERE id = ?";
+        db.update(sql, ticket.getMovie(), ticket.getAmount(), ticket.getFirst_name(), ticket.getLast_name(), ticket.getNumber(), ticket.getEmail(), ticket.getId());
+    }
 }
