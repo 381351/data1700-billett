@@ -3,6 +3,7 @@ package com.example.oblig3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -17,12 +18,13 @@ public class TicketController {
 
     @GetMapping("/getTickets")
     public List<Ticket> getTickets() {
-        return rep.getTickets();
+        List<Ticket> tickets = rep.getTickets();
+        Collections.sort(tickets, new TicketComparator());
+        return tickets;
     }
 
     @GetMapping("/getTicket")
     public Ticket getTicket(int id) {
-
         return rep.getTicket(id);
     }
 
