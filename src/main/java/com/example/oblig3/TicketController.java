@@ -1,10 +1,7 @@
 package com.example.oblig3;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,10 @@ public class TicketController {
     @PutMapping("/editTicket")
     public void editTicket(Ticket ticket) {
         rep.editTicket(ticket);
+    }
+
+    @DeleteMapping("/deleteTicket")
+    public void deleteTicket(int id) {
+        rep.deleteTicket(id);
     }
 }

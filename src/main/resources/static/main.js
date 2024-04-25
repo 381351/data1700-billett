@@ -127,26 +127,38 @@ function editTicket(id) {
 
 function submitEdit(id) {
     setAttributes()
-    ticket = {
-        "id" : id,
-        "movie" : movie.val(),
-        "amount" : amount.val(),
-        "first_name" : first_name.val(),
-        "last_name" : last_name.val(),
-        "number" : number.val(),
-        "email" : email.val()
-    }
-    $.ajax({
-        type: "PUT",
-        url : "/editTicket",
-        data : ticket,
-        success : function () {
-            showTickets()
-            emptyInputs()
+    inputValidation()
+    if (valid) {
+        ticket = {
+            "id" : id,
+            "movie" : movie.val(),
+            "amount" : amount.val(),
+            "first_name" : first_name.val(),
+            "last_name" : last_name.val(),
+            "number" : number.val(),
+            "email" : email.val()
+        }
+        $.ajax({
+            type: "PUT",
+            url : "/editTicket",
+            data : ticket,
+            success : function () {
+                showTickets()
+                emptyInputs()
 
-            $("#ticket-submit").text("Buy")
-            $("#ticket-form").attr("action", "javascript:buy()")
+                $("#ticket-submit").text("Buy")
+                $("#ticket-form").attr("action", "javascript:buy()")
+            }
+        })
+    }
+}
+
+function deleteTicket(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/deleteTicket?id=" + id,
+        success: function () {
+            showTickets()
         }
     })
-
 }
