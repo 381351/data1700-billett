@@ -11,14 +11,11 @@ public class TicketController {
     @Autowired
     private TicketRepository rep;
 
-    @GetMapping("/helloWorld")
-    public String helloWorld() {
-        return "Hello World!";
-    }
 
     @GetMapping("/getTickets")
     public List<Ticket> getTickets() {
         List<Ticket> tickets = rep.getTickets();
+        // Formats tickets to sorter accordingly by last name
         Collections.sort(tickets, new TicketComparator());
         return tickets;
     }

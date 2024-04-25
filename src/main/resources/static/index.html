@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Ticket ordering</h1>
+<!--Form element containing all relevant inputs for ticket ordering-->
 <form id="ticket-form" class="form-group" action="javascript:buy()">
     <label for="movies">Choose movie
         <select id="movies" class="form-control">
@@ -18,16 +19,19 @@
             <option>Kung Fu Panda 3</option>
             <option>Kung Fu Panda 4</option>
         </select>
+        <!--Each input has an associating "error-output"-->
         <span id="movies-error" class="text-danger"></span>
     </label>
-
     <label for="amount">Number of tickets<input id="amount" class="form-control col-md-3" type="number" min="0" /><span id="amount-error" class="text-danger"></span></label>
     <label for="first-name">First Name<input id="first-name" class="form-control" type="text" /><span id="first-name-error" class="text-danger"></span></label>
     <label for="last-name">Last Name<input id="last-name" class="form-control" type="text" /><span id="last-name-error" class="text-danger"></span></label>
     <label for="number">Phone number<input id="number" class="form-control" type="text" min="8" max="8" /><span id="number-error" class="text-danger"></span></label>
     <label for="email">E-mail<input id="email" class="form-control" type="email" /><span id="email-error" class="text-danger"></span></label>
+    <!--When clicked, the javascript function "buy()" is ran-->
     <button id="ticket-submit" class="btn btn-success" type="submit">Buy</button>
 </form>
+
+<!--Tickets will be shown within this <div> element-->
 <div id="tickets">
 
 </div>

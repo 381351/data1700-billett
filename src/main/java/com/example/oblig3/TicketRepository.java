@@ -16,12 +16,14 @@ public class TicketRepository {
     public List<Ticket> getTickets() {
 
         String sql = "SELECT * FROM Ticket";
+        // Maps each row in database table into a Ticket object by matching attributes of the Ticket class
         return db.query(sql, new BeanPropertyRowMapper<>(Ticket.class));
     }
 
+
     public Ticket getTicket(int id) {
         String sql = "SELECT * FROM Ticket WHERE id = ?";
-
+        // Retrieves ticket based on id and maps the selected row into a Ticket object
         return db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Ticket.class), id);
     }
 
