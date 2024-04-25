@@ -40,4 +40,11 @@ public class TicketController {
     public void deleteTicket(int id) {
         rep.deleteTicket(id);
     }
+
+    @DeleteMapping("/deleteAllTickets")
+    public void deleteAllTickets() {
+        rep.deleteAllTickets();
+    }
+
+
 }

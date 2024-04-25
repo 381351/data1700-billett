@@ -32,7 +32,7 @@ function showTickets() {
                     "<td><button class='btn btn-danger' onclick='deleteTicket("+ ticket.id+")'>Delete</button></td>" +
                     "</tr>"
             }
-            output += "</table><button class='btn btn-danger'>Delete all tickets</button>"
+            output += "</table><button class='btn btn-danger' onclick='deleteAllTickets()'>Delete all tickets</button>"
             $("#tickets").html(output)
         }
     })
@@ -157,6 +157,16 @@ function deleteTicket(id) {
     $.ajax({
         type: "DELETE",
         url: "/deleteTicket?id=" + id,
+        success: function () {
+            showTickets()
+        }
+    })
+}
+
+function deleteAllTickets() {
+    $.ajax({
+        type: "DELETE",
+        url: "/deleteAllTickets",
         success: function () {
             showTickets()
         }
